@@ -15,32 +15,33 @@
       <input type="text" class="txtb" placeholder="Add a task" />
       <div class="notcomp">
         <h3>Not Completed</h3>
-
-        <div class="task">
-          task
-          <i class="fas fa-trash-alt"></i>
-          <i class="fas fa-check"></i>
-        </div>
-
-        <div class="task">
-          task
-          <i class="fas fa-trash-alt"></i>
-          <i class="fas fa-check"></i>
-        </div>
       </div>
 
       <div class="comp">
         <h3>Completed</h3>
-        <div class="task">
-          task
-          <i class="fas fa-trash-alt"></i>
-        </div>
-
-        <div class="task">
-          task
-          <i class="fas fa-trash-alt"></i>
-        </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+      $('.txtb').on('keyup', function (e) {
+        // 13 significa o botão enter
+        if (e.keyCode == 13 && $('.txtb').val() != '') {
+          var task = $("<div class='task'></div>").text($('.txtb').val())
+          var del = $("<i class='fas fa-trash-alt'></i>").click(function () {
+            var p = $(this).parent()
+            p.fadeout(function () {
+              p.remove()
+            })
+          })
+
+          var check = $("<i class='fas fa-check'></i>")
+
+          task.append(del, check)
+          $('.notcomp').append(task)
+          // limpa o input
+          $('.txtb').val('')
+        }
+      })
+    </script>
   </body>
 </html>
